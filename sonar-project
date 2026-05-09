@@ -1,0 +1,7 @@
+sonar.host.url=http://172.27.12.7/
+sonar.projectKey=Java-MajorProject-TutorManagementSystem-G6
+sonar.projectName=Java-MajorProject-TutorManagementSystem-G6
+sonar.projectVersion=2.0
+sonar.java.binaries=/
+sonar.sources=.
+sonar.exclusions=**/test/**,**/node_modules/**
