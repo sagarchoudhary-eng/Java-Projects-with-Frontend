@@ -1,0 +1,62 @@
+<div class="grid-container">
+  <mat-grid-list cols="{{ (cardLayout | async)?.columns }}" rowHeight="200px">
+    <!--Mini Cards-->
+    <mat-grid-tile
+      *ngFor="let mc of miniCardData"
+      [colspan]="(cardLayout | async)?.miniCard?.cols"
+      [rowspan]="(cardLayout | async)?.miniCard?.rows"
+    >
+      <app-card>
+        <app-mini-card
+          [icon]="mc.icon"
+          [title]="mc.title"
+          [valueText]="mc.valueText"
+          [color]="mc.color"
+        ></app-mini-card>
+      </app-card>
+    </mat-grid-tile>
+    <!--Charts-->
+    <mat-grid-tile
+      [colspan]="(cardLayout | async)?.chart?.cols"
+      [rowspan]="(cardLayout | async)?.chart?.rows"
+    >
+      <app-card title="Number of Subscribed Students Per Tutor Report">
+        <app-chart></app-chart>
+      </app-card>
+    </mat-grid-tile>
+
+    <mat-grid-tile
+      [colspan]="(cardLayout | async)?.chart?.cols"
+      [rowspan]="(cardLayout | async)?.chart?.rows"
+    >
+      <app-card title="Feedback Report">
+        <app-feedback-report></app-feedback-report>
+      </app-card>
+    </mat-grid-tile>
+
+    <mat-grid-tile
+      [colspan]="(cardLayout | async)?.chart?.cols"
+      [rowspan]="(cardLayout | async)?.chart?.rows"
+    >
+      <app-card title="Tutor Student Report">
+        <app-no-of-tutor-student-report></app-no-of-tutor-student-report>
+      </app-card>
+    </mat-grid-tile>
+
+    <mat-grid-tile
+      [colspan]="(cardLayout | async)?.chart?.cols"
+      [rowspan]="(cardLayout | async)?.chart?.rows"
+    >
+      <app-card title="Tutor Average Rating Report">
+        <app-avg-rating-report></app-avg-rating-report>
+      </app-card>
+    </mat-grid-tile>
+    <!--Table-->
+    <mat-grid-tile
+      [colspan]="(cardLayout | async)?.table?.cols"
+      [rowspan]="(cardLayout | async)?.table?.rows"
+    >
+      <app-user-list fxFlex.gt-md="65" fxFlex.lt-lg="100"></app-user-list>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>
