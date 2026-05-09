@@ -1,0 +1,55 @@
+<div class="outer" *ngIf="pendingTutor.length > 0">
+  <h1>Pending Subscription</h1>
+  <div class="row">
+    <mat-card
+      class="mat-elevation-z6 col-lg-5"
+      *ngFor="let tutor of pendingTutor"
+    >
+      <mat-card-title
+        >{{ tutor.firstName | titlecase }}
+        {{ tutor.lastName | titlecase }}</mat-card-title
+      >
+      <mat-card-subtitle
+        >{{
+          tutor.extraDetails.technology | titlecase
+        }}
+        Tutor</mat-card-subtitle
+      >
+      <mat-card-subtitle>Email : {{ tutor.email }}</mat-card-subtitle>
+      <mat-card-subtitle>Contact : {{ tutor.mobileNo }}</mat-card-subtitle>
+      <mat-card-content
+        >About : {{ tutor.extraDetails.about }}</mat-card-content
+      >
+      <mat-card-content *ngIf="tutor.status === 'REJECTED'" style="color: red">
+        Your request has been rejected by {{ tutor.firstName }}
+        {{ tutor.lastName }}, please withdraw your request.
+      </mat-card-content>
+      <mat-card-actions>
+        <button
+          mat-raised-button
+          color="accent"
+          *ngIf="tutor.status === 'ACCEPTED'"
+          disabled
+        >
+          Pending
+        </button>
+        <button
+          mat-raised-button
+          color="warn"
+          *ngIf="tutor.status === 'REJECTED'"
+          disabled
+        >
+          Rejected
+        </button>
+        <button
+          mat-raised-button
+          color="warn"
+          (click)="withdrawSubscription(tutor)"
+        >
+          Withdraw
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+  <mat-divider></mat-divider>
+</div>

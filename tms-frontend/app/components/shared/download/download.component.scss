@@ -1,0 +1,26 @@
+#download {
+  cursor: pointer;
+  margin-left: 1rem;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.center {
+  display: flex;
+  align-items: center;
+}
+
+#user-table {
+  max-width: 40vw;
+  margin: 0 auto;
+}
+
+table {
+  width: 100%;
+}
+
+h2 {
+  text-align: center;
+}

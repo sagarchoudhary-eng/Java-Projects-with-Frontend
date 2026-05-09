@@ -1,0 +1,36 @@
+<div fxLayoutAlign="center center" fxFlexFill class="main-div">
+  <mat-card fxFlex="45">
+    <form
+      (submit)="onSubmitFeedback(feedbackForm)"
+      #feedbackForm="ngForm"
+      fxLayoutAlign="stretch"
+      fxLayout="column"
+    >
+      <mat-form-field>
+        <input
+          matInput
+          name="feedback"
+          ngModel
+          type="text"
+          placeholder="Your Feedback"
+          required
+        />
+      </mat-form-field>
+      <mat-star-rating
+        [rating]="rating"
+        [starCount]="starCount"
+        [color]="starColor"
+        (ratingUpdated)="onRatingChanged($event)"
+      ></mat-star-rating>
+      <button
+        style="margin-top: 10px"
+        mat-raised-button
+        color="accent"
+        type="submit"
+        [disabled]="feedbackForm.invalid"
+      >
+        Submit Feedback
+      </button>
+    </form>
+  </mat-card>
+</div>

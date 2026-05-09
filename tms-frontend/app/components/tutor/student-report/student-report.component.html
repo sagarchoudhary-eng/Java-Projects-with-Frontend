@@ -1,0 +1,17 @@
+<div class="col-lg-9" style="margin: auto auto">
+  <mat-card-header>
+    <mat-card-title> Student Status Report </mat-card-title>
+  </mat-card-header>
+  <div style="display: block">
+    <canvas
+      baseChart
+      [datasets]="barChartData"
+      [labels]="barChartLabels"
+      [options]="barChartOptions"
+      [plugins]="barChartPlugins"
+      [legend]="barChartLegend"
+      [chartType]="barChartType"
+    >
+    </canvas>
+  </div>
+</div>

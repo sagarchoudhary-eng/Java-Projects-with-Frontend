@@ -1,0 +1,60 @@
+.main-div mat-card {
+  padding: 0px;
+  overflow: hidden;
+}
+.login-form {
+  padding: 20px;
+}
+
+a {
+  font-size: 0.9rem;
+  position: relative;
+  text-decoration: none;
+  cursor: pointer;
+}
+a:before {
+  content: "";
+  position: absolute;
+  height: 0.2em;
+  width: 100%;
+  background: linear-gradient(
+    to right,
+    #fd004c,
+    #fe9000,
+    #fff020,
+    #3edf4b,
+    #3363ff,
+    #b102b7
+  );
+  background-size: 200% 100%;
+  bottom: -0.1em;
+  transition: 1.5s;
+}
+
+a:hover:before {
+  background-position: 100% 0;
+}
+
+#mainCaptcha {
+  height: 80%;
+  width: 80%;
+  font-size: 30px;
+  letter-spacing: 3px;
+  margin: auto;
+  display: block;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  text-align: center;
+}
+a,
+a:visited,
+a:hover,
+a:active {
+  color: inherit;
+}
+
+button {
+  margin-top: 10px;
+}

@@ -1,0 +1,58 @@
+<div class="outer" *ngIf="subscribedTutor.length > 0">
+  <h1>Subscribed Tutors</h1>
+  <div class="row">
+    <mat-card
+      class="mat-elevation-z6 col-lg-5"
+      *ngFor="let tutor of subscribedTutor"
+    >
+      <mat-card-title
+        >{{ tutor.tutor.firstName | titlecase }}
+        {{ tutor.tutor.lastName | titlecase }}</mat-card-title
+      >
+      <mat-card-subtitle>
+        {{ tutor.tutor.extraDetails.technology | titlecase }}
+        Tutor</mat-card-subtitle
+      >
+      <mat-card-subtitle>Email : {{ tutor.tutor.email }}</mat-card-subtitle>
+      <mat-card-subtitle
+        >Contact : {{ tutor.tutor.mobileNo }}</mat-card-subtitle
+      >
+      <mat-card-content
+        >About : {{ tutor.tutor.extraDetails.about }}</mat-card-content
+      >
+      <mat-card-actions>
+        <button
+          mat-raised-button
+          color="primary"
+          routerLink="/download-files/{{ tutor.tutor.id }}"
+        >
+          View Content</button
+        >&nbsp;
+        <button
+          *ngIf="!tutor.feedback"
+          mat-raised-button
+          color="primary"
+          (click)="giveFeedback(tutor.tutor)"
+        >
+          Give Feedback
+        </button>
+        <button
+          *ngIf="tutor.feedback"
+          mat-raised-button
+          disabled
+          color="primary"
+        >
+          Feedback Given
+        </button>
+        <button
+          mat-raised-button
+          color="warn"
+          (click)="unsubscribeTutor(tutor.tutor)"
+        >
+          UnSubscribe
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+  <mat-divider></mat-divider>
+</div>

@@ -1,0 +1,119 @@
+<button
+  mat-button
+  color="primary"
+  onclick="history.back()"
+  style="margin-left: 4%"
+>
+  <mat-icon>arrow_back</mat-icon>
+</button>
+<div class="d-flex justify-content-center">
+  <mat-form-field appearance="standard" fxFlex.gt-md="20">
+    <mat-icon id="search" matPrefix>search</mat-icon>
+    <mat-label>Search By Tutor or Technology</mat-label>
+    <input
+      matInput
+      type="search"
+      [(ngModel)]="search"
+      placeholder="Ex. sagar | c++"
+      class="search-input"
+    />
+  </mat-form-field>
+</div>
+<div class="row">
+  <mat-card
+    class="mat-elevation-z6 col-lg-5"
+    *ngFor="let tutor of subscribedTutor | subTutorSearch: search"
+  >
+    <mat-card-title
+      >{{ tutor.tutor.firstName | titlecase }}
+      {{ tutor.tutor.lastName | titlecase }}</mat-card-title
+    >
+    <mat-card-subtitle>
+      {{ tutor.tutor.extraDetails.technology | titlecase }}
+      Tutor</mat-card-subtitle
+    >
+    <mat-card-subtitle>Email : {{ tutor.tutor.email }}</mat-card-subtitle>
+    <mat-card-subtitle>Contact : {{ tutor.tutor.mobileNo }}</mat-card-subtitle>
+    <mat-card-content
+      >About : {{ tutor.tutor.extraDetails.about }}</mat-card-content
+    >
+    <mat-card-actions>
+      <button
+        mat-raised-button
+        color="primary"
+        routerLink="/download-files/{{ tutor.tutor.id }}"
+      >
+        View Content</button
+      >&nbsp;
+      <button
+        *ngIf="!tutor.feedback"
+        mat-raised-button
+        color="primary"
+        (click)="giveFeedback(tutor.tutor)"
+      >
+        Give Feedback
+      </button>
+      <button *ngIf="tutor.feedback" mat-raised-button disabled color="primary">
+        Feedback Given
+      </button>
+      <button
+        mat-raised-button
+        color="warn"
+        (click)="unsubscribeTutor(tutor.tutor)"
+      >
+        UnSubscribe
+      </button>
+    </mat-card-actions>
+  </mat-card>
+
+  <mat-card
+    class="mat-elevation-z6 col-lg-5"
+    *ngFor="let tutor of pendingTutor | tutorSearch: search"
+  >
+    <mat-card-title
+      >{{ tutor.firstName | titlecase }}
+      {{ tutor.lastName | titlecase }}</mat-card-title
+    >
+    <mat-card-subtitle
+      >{{ tutor.extraDetails.technology | titlecase }} Tutor</mat-card-subtitle
+    >
+    <mat-card-subtitle>Email : {{ tutor.email }}</mat-card-subtitle>
+    <mat-card-subtitle>Contact : {{ tutor.mobileNo }}</mat-card-subtitle>
+    <mat-card-content>About : {{ tutor.extraDetails.about }}</mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button color="accent" disabled>Pending</button>
+      <button
+        mat-raised-button
+        color="warn"
+        (click)="withdrawSubscription(tutor)"
+      >
+        Withdraw
+      </button>
+    </mat-card-actions>
+  </mat-card>
+
+  <mat-card
+    class="mat-elevation-z6 col-lg-5"
+    *ngFor="let tutor of otherTutor | tutorSearch: search"
+  >
+    <mat-card-title
+      >{{ tutor.firstName | titlecase }}
+      {{ tutor.lastName | titlecase }}</mat-card-title
+    >
+    <mat-card-subtitle
+      >{{ tutor.extraDetails.technology | titlecase }} Tutor</mat-card-subtitle
+    >
+    <mat-card-subtitle>Email : {{ tutor.email }}</mat-card-subtitle>
+    <mat-card-subtitle>Contact : {{ tutor.mobileNo }}</mat-card-subtitle>
+    <mat-card-content>About : {{ tutor.extraDetails.about }}</mat-card-content>
+    <mat-card-actions>
+      <button
+        mat-raised-button
+        color="primary"
+        (click)="subscribeTutor(tutor.id)"
+      >
+        Subscribe
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</div>

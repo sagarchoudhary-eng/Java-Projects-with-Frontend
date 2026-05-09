@@ -1,0 +1,36 @@
+<mat-toolbar color="primary">
+  <div fxHide.gt-xs>
+    <button mat-icon-button (click)="onToggleSidenav()">
+      <mat-icon>menu</mat-icon>
+    </button>
+  </div>
+  <div>
+    <a routerLink="/">TMS</a>
+  </div>
+  <div fxFlex fxLayout fxLayoutAlign="flex-end">
+    <ul fxLayout fxLayoutGap="10px" class="navigation-items">
+      <li>
+        <div
+          fxFlex
+          fxLayout
+          fxLayoutAlign="flex-stretch center"
+          fxLayoutGap="1rem"
+        >
+          <mat-icon>brightness_5</mat-icon>
+          <mat-slide-toggle [formControl]="toggleControl"></mat-slide-toggle>
+          <mat-icon>bedtime</mat-icon>
+        </div>
+      </li>
+
+      <li *ngIf="!(isAuthenticated$ | async)" fxHide.xs>
+        <button mat-button routerLink="/auth" routerLinkActive="mat-accent">
+          <mat-icon>account_circle</mat-icon>
+        </button>
+      </li>
+
+      <li *ngIf="isAuthenticated$ | async" fxHide.xs>
+        <button mat-button (click)="onLogout()">Logout</button>
+      </li>
+    </ul>
+  </div>
+</mat-toolbar>

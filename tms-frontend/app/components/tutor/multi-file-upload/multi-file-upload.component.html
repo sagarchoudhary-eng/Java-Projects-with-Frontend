@@ -1,0 +1,67 @@
+<div class="container" fxFlex="100" fxLayout="row" fxLayoutAlign="center">
+  <div fxFlex="50" style="margin-right: 1rem">
+    <mat-card>
+      <mat-card-header fxLayout="column">
+        <mat-card-title>Multiple File Upload</mat-card-title>
+        <mat-card-subtitle>
+          <span *ngIf="selectedFiles !== undefined"
+            >{{ selectedFiles.length }} file(s) selected</span
+          >
+        </mat-card-subtitle>
+        <mat-card-subtitle>
+          <input
+            #fileInput
+            type="file"
+            (change)="selectFile($event)"
+            style="display: none"
+            ngModel
+            multiple
+          />
+          <mat-form-field
+            class="example-full-width"
+            (click)="fileInput.click()"
+          >
+            <input
+              matInput
+              placeholder="Choose Multiple Files"
+              value="{{
+                fileInput.value.substr(fileInput.value.lastIndexOf('\\') + 1)
+              }}"
+            />
+            <mat-icon matSuffix>folder_open</mat-icon>
+          </mat-form-field>
+
+          <button
+            style="margin-left: 1.5rem"
+            mat-raised-button
+            color="primary"
+            (click)="upload(fileInput)"
+          >
+            Upload
+          </button>
+        </mat-card-subtitle>
+      </mat-card-header>
+    </mat-card>
+  </div>
+
+  <div fxFlex="50">
+    <mat-card>
+      <mat-card-header fxLayout="column">
+        <mat-card-title *ngIf="!showProgress"
+          >No Upload in Progress!</mat-card-title
+        >
+        <mat-card-title *ngIf="showProgress"
+          >Files Being Uploaded!</mat-card-title
+        >
+        <mat-card-subtitle *ngFor="let uploadedFile of uploadedFiles">
+          {{ uploadedFile.name }} - {{ uploadedFile.progress }}%
+          <mat-progress-bar
+            style="margin-top: 0.25rem"
+            mode="determinate"
+            value="{{ uploadedFile.progress }}"
+          ></mat-progress-bar>
+        </mat-card-subtitle>
+      </mat-card-header>
+    </mat-card>
+  </div>
+</div>

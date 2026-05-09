@@ -1,0 +1,34 @@
+<div class="outer">
+  <h1>All Tutors</h1>
+  <div class="row">
+    <mat-card
+      class="mat-elevation-z6 col-lg-5"
+      *ngFor="let tutor of otherTutor"
+    >
+      <mat-card-title
+        >{{ tutor.firstName | titlecase }}
+        {{ tutor.lastName | titlecase }}</mat-card-title
+      >
+      <mat-card-subtitle
+        >{{
+          tutor.extraDetails.technology | titlecase
+        }}
+        Tutor</mat-card-subtitle
+      >
+      <mat-card-subtitle>Email : {{ tutor.email }}</mat-card-subtitle>
+      <mat-card-subtitle>Contact : {{ tutor.mobileNo }}</mat-card-subtitle>
+      <mat-card-content
+        >About : {{ tutor.extraDetails.about }}</mat-card-content
+      >
+      <mat-card-actions>
+        <button
+          mat-raised-button
+          color="primary"
+          (click)="subscribeTutor(tutor.id)"
+        >
+          Subscribe
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</div>
